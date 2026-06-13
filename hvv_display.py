@@ -114,7 +114,7 @@ class TrainBoard:
                     "line": line_name,
                     "dest": direction,
                     "time": time_str,
-                    "is_delayed": delay_minutes > 0
+                    "is_delayed": delay_minutes > 3
                 })
         except Exception as e:
             print(f"API Fehler: {e}")
