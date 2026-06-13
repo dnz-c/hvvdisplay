@@ -5,12 +5,14 @@ from PIL import Image, ImageDraw, ImageFont
 from geofox import *
 
 # CONFIG
-STATION_NAME = "Jungfernstieg"
 API_UPDATE_INTERVAL = 30.0
 SCROLL_SPEED = 0.5
 PAUSE_DURATION = 3.0
 
 def get_line_color(line_name):
+    if (line_name[0] == "A"): # AKN
+        return (255, 130, 19)
+    
     colors = {
         "S1": (0, 150, 44),
         "S2": (180, 20, 57),
@@ -162,6 +164,11 @@ class TrainBoard:
             time.sleep(0.02)
 
 if __name__ == "__main__":
+    if (sys.argv.__len__() != 2):
+        print("Usage: sudo python hvv_display.py <STATION_NAME>")
+        
+    global STATION_NAME
+    STATION_NAME = sys.argv[1]
     load_geofox_creds()
     board = TrainBoard()
     board.run()

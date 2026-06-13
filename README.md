@@ -56,9 +56,7 @@ In there, add the following data:
 ```
 Make sure to replace pass and user with the password and username you have received from the geofox API team
 
-Now you can execute the hvv_display.py script as root user and are done!
-
-If you want to change the station, you can change it in hvv_display.py in the variable STATION_NAME
+Now you can execute the hvv_display.py script as root user and pass your local station as a command line argument and you are done!
 
 ## Script
 The script itself consists of 2 parts one for the geofox API and one for the display logic
