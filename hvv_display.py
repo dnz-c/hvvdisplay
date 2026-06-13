@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 from geofox import *
 
 # CONFIG
-STATION_NAME = "Dammtor"
+STATION_NAME = "Jungfernstieg"
 API_UPDATE_INTERVAL = 30.0
 SCROLL_SPEED = 0.5
 PAUSE_DURATION = 3.0
@@ -103,6 +103,7 @@ class TrainBoard:
     def fetch_api_data(self):
         try:
             raw_deps = get_station_departures(STATION_NAME)
+            raw_deps.sort(key=lambda x: x[3])
             self.departures = []
             
             for dep in raw_deps[:4]:
