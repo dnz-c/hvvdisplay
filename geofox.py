@@ -42,7 +42,7 @@ def get_station_departures(station_name: str):
         },
         "time": get_gti_time(),
         "maxList": 10,
-        "maxTimeOffset": 1440, # 1 Day
+        "maxTimeOffset": 60, # 1 Hour
         "allStationsInChangingNode": False,
         "returnFilters": False,
         "useRealtime": True,
