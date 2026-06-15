@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from hashlib import sha1
 import hmac
 import json
+import sys
 import requests
 
 GEOFOX_ENDPOINT = "https://gti.geofox.de"
@@ -41,7 +42,7 @@ def get_station_departures(station_name: str):
         },
         "time": get_gti_time(),
         "maxList": 10,
-        "maxTimeOffset": 30,
+        "maxTimeOffset": 1440, # 1 Day
         "allStationsInChangingNode": False,
         "returnFilters": False,
         "useRealtime": True,
@@ -58,6 +59,9 @@ def get_station_departures(station_name: str):
     departures = response.json()
     
     for dep in departures.get("departures", []):
+        if dep.get("cancelled", False):
+            continue
+        
         line_name = dep["line"]["name"]
         direction = dep["line"]["direction"]
         platform  = dep.get("platform", "")
